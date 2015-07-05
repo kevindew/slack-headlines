@@ -6,17 +6,18 @@ from flask import request
 from slacker import Slacker
 import json
 import datetime
+from secret_keys import SLACK_API_TOKEN, HEADLINE_TOKEN, HEADLINE_CHANNEL
 
 app = Flask(__name__)
-slack = Slacker('xoxp-2175777328-2178938430-6784950080-de51a4')
+slack = Slacker(SLACK_API_TOKEN)
 
 # Note: We don't need to call run() since our application is embedded within
 # the App Engine WSGI application server.
 
 @app.route('/headline', methods=['POST'])
-def hello():
+def headline():
     """Send a headline."""
-    if request.form['token'] != 'zSf7gubrdsb798Lrdi18AkfS':
+    if request.form['token'] != HEADLINE_TOKEN:
         return "Sorry - token doesn't match. \n" + request.form['text'], 400
     if request.form['channel_name'] == 'directmessage': 
         return "Headline in a direct message? what are you doing son.\n" + request.form['text'], 400
@@ -39,14 +40,14 @@ def hello():
     parse = 'full'
     slack.chat.post_message('#' + request.form['channel_name'], '', username=username, icon_url=icon_url, attachments=json.dumps(attachments), parse='full')
 
-    if request.form['channel_name'] != 'headlines': 
+    if request.form['channel_name'] != HEADLINE_CHANNEL: 
         fallback = fallback + ' posted in #' + request.form['channel_name']
         attachments[0]['fields'] = [{
             'title': 'Posted in',
             'value': '#' + request.form['channel_name'],
             'short': True
         }]
-        slack.chat.post_message('#headlines', '', username=username, icon_url=icon_url, attachments=json.dumps(attachments), parse='full')        
+        slack.chat.post_message('#' + HEADLINE_CHANNEL, '', username=username, icon_url=icon_url, attachments=json.dumps(attachments), parse='full')        
 
     return '', 204
 
