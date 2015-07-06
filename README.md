@@ -18,3 +18,9 @@ Env variables for this app are handled by creating a file called `secret_keys.py
 SLACK_API_TOKEN = 'asfasd-asdfasd-adsfadf-adfadsfas'
 HEADLINE_TOKEN = 'ASDASDASD'
 HEADLINE_CHANNEL = 'headlines'
+
+## Setting Up Slack
+
+You need to set up a **Slash Command** for the command you want to use (for instance `/headlines`) which posted to your Google App Engine URL.
+
+You also need to create a Slack API token to be used in the aforementioned `secret_keys.py` file.
