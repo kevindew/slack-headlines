@@ -28,7 +28,7 @@ def headline():
     attachments = [{
         'fallback': fallback,
         'color': '#C9A150',
-        'author_name': '@' + request.form['user_name'],
+        'author_name': request.form['user_name'],
         'author_icon': user.body['user']['profile']['image_24'],
         'text': request.form['text'],
         # 'fields': [{
