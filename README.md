@@ -9,7 +9,7 @@ This project runs with Python (2.7) with dependencies installed via PIP and is s
 Install dependencies with:
 `pip install`
 
-To run in dev and deploy you need to install (Google App Engine Launcher)[https://cloud.google.com/appengine/downloads]. From there you can hit `run` to run it locally or `deploy` to push it live (to your designated App Engine instance).
+To run in dev and deploy you need to install [Google App Engine Launcher](https://cloud.google.com/appengine/downloads). From there you can hit `run` to run it locally or `deploy` to push it live (to your designated App Engine instance).
 
 ## Env variables
 
